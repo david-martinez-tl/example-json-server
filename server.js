@@ -75,9 +75,9 @@ server.use(middlewares);
  * Middleware personalizado de logs
  * ---------------------------------------------------------
  *
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
  *
  * @returns {void}
  */
@@ -95,10 +95,10 @@ server.use((req, res, next) => {
  * Health Check
  * ---------------------------------------------------------
  *
- * @param {import('express').Request} req
- * @param {import('express').Response} res
+ * @param {Request} req
+ * @param {Response} res
  *
- * @returns {import('express').Response}
+ * @returns {Response}
  */
 server.get('/health', (req, res) => {
   return res.status(200).json({
@@ -113,10 +113,10 @@ server.get('/health', (req, res) => {
  * Obtener personajes vivos
  * ---------------------------------------------------------
  *
- * @param {import('express').Request} req
- * @param {import('express').Response} res
+ * @param {Request} req
+ * @param {Response} res
  *
- * @returns {import('express').Response}
+ * @returns {Response}
  */
 server.get('/characters/alive', (req, res) => {
   /**
@@ -148,10 +148,10 @@ server.get('/characters/alive', (req, res) => {
  * Ejemplo:
  * GET /characters/search?name=rick
  *
- * @param {import('express').Request} req
- * @param {import('express').Response} res
+ * @param {Request} req
+ * @param {Response} res
  *
- * @returns {import('express').Response}
+ * @returns {Response}
  */
 server.get('/characters/search', (req, res) => {
   /**
@@ -199,11 +199,11 @@ server.get('/characters/search', (req, res) => {
  * Middleware de validación para POST
  * ---------------------------------------------------------
  *
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
  *
- * @returns {void | import('express').Response}
+ * @returns {void | Response}
  */
 server.post('/characters', (req, res, next) => {
   /**

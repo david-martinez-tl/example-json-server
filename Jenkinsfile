@@ -8,13 +8,9 @@ pipeline {
      * PIPELINE AS CODE
      * ============================================================
      *
-     * Este Jenkinsfile se encuentra en la raíz del repositorio:
+     * El Jenkinsfile se encuentra en la raíz del repositorio.
      *
-     * https://github.com/david-martinez-tl/example-json-server
-     *
-     * El pipeline despliega exclusivamente la rama definida en
-     * GIT_BRANCH.
-     *
+     * Jenkins obtiene automáticamente el repositorio mediante SCM.
      *
      * Arquitectura:
      *
@@ -42,26 +38,21 @@ pipeline {
 
         /*
          * ========================================================
-         * 1. CHECKOUT
+         * 1. SHOW CHECKOUT INFORMATION
          * ========================================================
+         *
+         * El checkout ya lo realiza Jenkins automáticamente.
          */
 
-        stage('Checkout') {
+        stage('Checkout information') {
 
             steps {
 
                 echo '''
-                    ==========================================
-                    CHECKOUT
-                    ==========================================
-                    '''
-
-                deleteDir()
-
-                git(
-                    branch: env.GIT_BRANCH,
-                    url: env.GIT_REPOSITORY
-                )
+                ==========================================
+                 CHECKOUT
+                ==========================================
+                '''
 
                 sh '''
                     set -e
@@ -93,7 +84,7 @@ pipeline {
 
                 echo '''
                     ==========================================
-                    INSTALL DEPENDENCIES
+                     INSTALL DEPENDENCIES
                     ==========================================
                     '''
 
@@ -128,7 +119,7 @@ pipeline {
 
                 echo '''
                     ==========================================
-                    VALIDATE APPLICATION
+                     VALIDATE APPLICATION
                     ==========================================
                     '''
 
@@ -158,7 +149,7 @@ pipeline {
 
                 echo '''
                     ==========================================
-                    TEST SSH CONNECTION
+                     TEST SSH CONNECTION
                     ==========================================
                     '''
 
@@ -202,7 +193,7 @@ pipeline {
 
                 echo '''
                     ==========================================
-                    DEPLOY APPLICATION
+                     DEPLOY APPLICATION
                     ==========================================
                     '''
 
@@ -338,7 +329,7 @@ pipeline {
 
                 echo '''
                     ==========================================
-                    HEALTH CHECK
+                     HEALTH CHECK
                     ==========================================
                     '''
 
@@ -390,7 +381,7 @@ pipeline {
 
             echo '''
                 ==========================================
-                DEPLOY EXITOSO
+                 DEPLOY EXITOSO
                 ==========================================
                 '''
 
@@ -407,13 +398,13 @@ pipeline {
         failure {
 
             echo '''
-                ==========================================
-                DEPLOY FALLIDO
-                ==========================================
+==========================================
+ DEPLOY FALLIDO
+==========================================
 
-                Revisar los logs de Jenkins para identificar
-                la etapa que produjo el error.
-                '''
+Revisar los logs de Jenkins para identificar
+la etapa que produjo el error.
+'''
         }
 
 
